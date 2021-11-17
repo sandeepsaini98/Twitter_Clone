@@ -1,0 +1,25 @@
+<h1 class="text-center text-monospace text-muted mt-4"><%= link_to "Post New", new_feed_path(@feeds), class: "btn btn-info btn-lg" %> </h1>
+<div class ="container">
+<% @feeds.each do |feed| %>
+  <div class="row justify-content-md-center">
+    <div class="col-12 mt-2">
+    <div class="card shadow-lg p-0 mb-1 bg-grey rounded ">
+      <div class="card-header text-center text-muted text-monospace font-weight-bold shadow-lg p-1 mb-1 bg-grey rounded ">
+      Categories
+      </div>
+      <div class="card-body shadow-lg p-3 mb-1 bg-grey rounded">
+        <blockquote class="blockquote mb-0">
+          <p class="text-muted text-monospace"><%= feed.description %></p>
+          <% if feed.user==current_user%>
+            <%= link_to "Edit", edit_feed_path(feed), class: "btn btn-outline-info btn-sm" %>
+            <%= link_to "Delete", feed_path(feed), class: "btn btn-outline-danger btn-sm", method: :delete, data: {confirm: "Are you sure?"} %>
+          <%end%>
+             <%= link_to "Reply", new_feed_path(feed), class: "btn btn-outline-info btn-sm" %>
+          <footer class="blockquote-footer text-right text-monospace font-weight-bold font-italic" ><%= feed.username %><cite title="Source Title"> </cite></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+  </div>
+<% end %>
+</div>

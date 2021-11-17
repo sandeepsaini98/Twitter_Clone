@@ -1,0 +1,33 @@
+<h1><%= @user.username%></h1>
+<h4>
+<% @user.feeds.each do |feed| %>
+   <li><%= feed.description %></li>
+<%end%>
+</h4>
+<%
+=begin%>
+ <%= link_to "Follow", follow_path(@user.id), class: "btn btn-outline-info btn-sm" %>
+<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Unfollow</button> 
+<%
+=end%>
+
+<% if user_signed_in? %>
+ <% if current_user.following?(@user)%>
+    <%= button_to "Unfollow",relationships_path(user_id: @user.id),method: :delete, class: "btn btn-outline-info btn-sm "%>
+ <% else %>
+    <%= button_to "Follow",relationships_path(user_id: @user.id),class: "btn btn-outline-danger my-2 my-sm-0"%>
+<% end %>
+<% end %>
+
+
+<%
+=begin%>
+ <a href="<%= follow_path(@user.id) %>">
+  <%= @user.follow.count %> following
+</a>
+<a href="<%= follower_user_path(@user.id) %>">
+  <%= @user.follower.count %> followers
+</a>
+ 
+<%
+=end%>

@@ -1,0 +1,14 @@
+<div class="container" id= "home-container">
+	<div class="jumbotron text-center ">
+		<h1 class="display-4">Welcome!</h1>
+				<p class="lead">The power of social media is it forces necessary change</p>
+		<% if current_user %>
+			<%= link_to 'Sign out', destroy_user_session_path, method: :delete , class: "btn btn-info btn-lg" %>
+			<%else%>
+			<%= link_to 'Sign Up', new_user_registration_path , class: "btn btn-info btn-lg" %>
+			<%= link_to 'Sign In', new_user_session_path , class: "btn btn-info btn-lg" %>
+			<%end%>
+		<%= link_to "Feeds!", feeds_path, class: "btn btn-info btn-lg" %>
+	</div>
+</div>
+</div>
